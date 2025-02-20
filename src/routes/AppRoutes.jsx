@@ -2,11 +2,12 @@ import { createBrowserRouter } from 'react-router-dom';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import ErrorPage from '../pages/ErrorPage';
+import PrivateRoute from './PrivateRoute';
 
 const AppRoutes = createBrowserRouter([
     {
         path: "/",
-        element: <div>Hello world!</div>,
+        element: <PrivateRoute><div>Hello world!</div></PrivateRoute> ,
     },
     {
         path: '/auth/login',
