@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 const AppRoutes = createBrowserRouter([
     {
@@ -9,6 +10,10 @@ const AppRoutes = createBrowserRouter([
     {
         path: '/auth/login',
         element: <Login></Login>
+    },
+    {
+        path: '/auth/register',
+        element: <Register></Register>
     },
 ]);
 
