@@ -3,11 +3,12 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import ErrorPage from '../pages/ErrorPage';
 import PrivateRoute from './PrivateRoute';
+import Home from '../pages/Home';
 
 const AppRoutes = createBrowserRouter([
     {
         path: "/",
-        element: <PrivateRoute><div>Hello world!</div></PrivateRoute> ,
+        element: <PrivateRoute><Home></Home></PrivateRoute> ,
     },
     {
         path: '/auth/login',
