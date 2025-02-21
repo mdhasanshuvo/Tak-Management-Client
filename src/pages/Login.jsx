@@ -3,6 +3,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AuthProvider';
+import axios from 'axios';
 // import { Helmet } from 'react-helmet';
 
 const Login = () => {
@@ -10,6 +11,14 @@ const Login = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
+
+    const showErrorAlert = (message) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+        });
+    };
 
     // Google login function
     const onClickForGoogle = () => {
@@ -19,14 +28,31 @@ const Login = () => {
                 console.log(userFromGoogle);
                 setUser(userFromGoogle);
 
-                // Show success message with SweetAlert
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Login Successful',
-                    text: 'You have successfully logged in with Google!',
-                });
+                // Prepare user information for the database
+                const userInfo = {
+                    name: userFromGoogle.displayName,
+                    email: userFromGoogle.email,
+                    photo: userFromGoogle.photoURL,
+                };
 
-                navigate(location?.state ? location.state : '/');
+                axios.post('http://localhost:5000/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('User added to the database');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Login Successfully!',
+                                text: 'Welcome to Task Manager!',
+                                confirmButtonText: 'Continue',
+                            }).then(() => {
+                                navigate(location?.state ? location.state : '/');
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Error adding user to database:', error);
+                        showErrorAlert(error.message);
+                    });
             })
             .catch(error => {
                 console.log(error.message);
@@ -77,9 +103,9 @@ const Login = () => {
         <div className="min-h-screen flex justify-center items-center -mt-20 bg-[#F3F3F3]">
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10 my-1">
                 <h2 className="text-2xl font-semibold text-center">Login your account</h2>
-                <form 
-                onSubmit={handleSubmit}
-                 className="card-body">
+                <form
+                    onSubmit={handleSubmit}
+                    className="card-body">
                     <div className="fieldset">
                         <label className="fieldset-label">
                             <span className="label-text">Email</span>
@@ -116,8 +142,8 @@ const Login = () => {
 
                     <div className="text-center space-y-3">
                         <h2 className="text-center mt-10">Or, Log in with</h2>
-                        <button className="btn" 
-                        onClick={onClickForGoogle}
+                        <button className="btn"
+                            onClick={onClickForGoogle}
                         >
                             <FaGoogle />
                             <span className="text-lg font-light">Google</span>

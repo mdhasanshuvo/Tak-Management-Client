@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 // import axios from 'axios';
 
 const Register = () => {
@@ -32,24 +33,24 @@ const Register = () => {
                 };
 
                 // Add user to the database
-                // axios.post('https://product-hunt-server-five.vercel.app/users', userInfo)
-                //     .then(res => {
-                //         if (res.data.insertedId) {
-                //             console.log('User added to the database');
-                //             Swal.fire({
-                //                 icon: 'success',
-                //                 title: 'Registered Successfully!',
-                //                 text: 'Welcome to Tech Discovery!',
-                //                 confirmButtonText: 'Continue',
-                //             }).then(() => {
-                //                 navigate(location?.state ? location.state : '/');
-                //             });
-                //         }
-                //     })
-                //     .catch(error => {
-                //         console.log('Error adding user to database:', error);
-                //         showErrorAlert(error.message);
-                //     });
+                axios.post('http://localhost:5000/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('User added to the database');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Registered Successfully!',
+                                text: 'Welcome to Tech Discovery!',
+                                confirmButtonText: 'Continue',
+                            }).then(() => {
+                                navigate(location?.state ? location.state : '/');
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Error adding user to database:', error);
+                        showErrorAlert(error.message);
+                    });
             })
             .catch(error => {
                 console.log('Error during Google authentication:', error.message);
@@ -94,24 +95,24 @@ const Register = () => {
                             photo: user.photoURL,
                         };
 
-                        // axios.post('https://product-hunt-server-five.vercel.app/users', userInfo)
-                        //     .then(res => {
-                        //         if (res.data.insertedId) {
-                        //             console.log('User added to the database');
-                        //             Swal.fire({
-                        //                 icon: 'success',
-                        //                 title: 'Registered Successfully!',
-                        //                 text: 'Your account has been created.',
-                        //                 confirmButtonText: 'Continue',
-                        //             }).then(() => {
-                        //                 navigate('/');
-                        //             });
-                        //         }
-                        //     })
-                        //     .catch(error => {
-                        //         console.log('Error adding user to database:', error);
-                        //         showErrorAlert(error.message);
-                        //     });
+                        axios.post('http://localhost:5000/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('User added to the database');
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Registered Successfully!',
+                                        text: 'Your account has been created.',
+                                        confirmButtonText: 'Continue',
+                                    }).then(() => {
+                                        navigate('/');
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                console.log('Error adding user to database:', error);
+                                showErrorAlert(error.message);
+                            });
                     })
                     .catch(error => {
                         console.log('Error updating user profile:', error);
