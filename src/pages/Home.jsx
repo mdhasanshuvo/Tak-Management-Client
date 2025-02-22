@@ -190,16 +190,16 @@ const Home = () => {
               type="text"
               value={taskInput}
               onChange={(e) => setTaskInput(e.target.value)}
-              className="flex-1 p-2 border rounded-md focus:outline-none"
+              className="flex-1 p-1 border rounded-md focus:outline-none"
               placeholder="Add a task..."
               maxLength="50"
             />
-            <select value={status} onChange={(e) => setStatus(e.target.value)} className="ml-2 p-2 border rounded-md">
+            <select value={status} onChange={(e) => setStatus(e.target.value)} className="ml-2 p-1 border rounded-md">
               <option value="todo">To do</option>
               <option value="doing">Doing</option>
               <option value="done">Done</option>
             </select>
-            <button type="submit" className="ml-2 bg-blue-500 text-white px-3 py-2 rounded-md">{editingTaskId ? 'Update' : '+ Add'}</button>
+            <button type="submit" className="ml-1 bg-blue-500 text-white px-3 py-2 rounded-md">{editingTaskId ? 'Update' : '+ Add'}</button>
           </form>
         </div>
 
