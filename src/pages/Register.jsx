@@ -33,7 +33,7 @@ const Register = () => {
                 };
 
                 // Add user to the database
-                axios.post('https://task-management-server-fmbfsfprz.vercel.app/users', userInfo)
+                axios.post('https://task-management-server-rust-seven.vercel.app/users', userInfo)
                     .then(res => {
                         if (res.data.insertedId) {
                             console.log('User added to the database');
@@ -83,6 +83,14 @@ const Register = () => {
                 console.log(user);
                 setUser(user);
 
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registered Successfully!',
+                    text: 'Your account has been created.',
+                    confirmButtonText: 'Continue',
+                })
+                navigate('/');
+
                 // Update user profile
                 updateUser({
                     displayName: name,
@@ -95,7 +103,7 @@ const Register = () => {
                             photo: user.photoURL,
                         };
 
-                        axios.post('https://task-management-server-fmbfsfprz.vercel.app/users', userInfo)
+                        axios.post('https://task-management-server-rust-seven.vercel.app/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
                                     console.log('User added to the database');
@@ -130,9 +138,9 @@ const Register = () => {
         <div className="min-h-screen flex justify-center items-center -mt-20 bg-[#F3F3F3]">
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10 pb-5 my-1">
                 <h2 className="text-2xl font-semibold text-center">Register your account</h2>
-                <form 
-                onSubmit={handleSubmit}
-                 className="card-body">
+                <form
+                    onSubmit={handleSubmit}
+                    className="card-body">
                     {/* Name */}
                     <div className="fieldset">
                         <label className="label">

@@ -27,7 +27,7 @@ const TaskForm = ({ refreshTasks }) => {
     };
 
     try {
-      const { data } = await axios.post("https://task-management-server-fmbfsfprz.vercel.app/tasks", newTask);
+      const { data } = await axios.post("https://task-management-server-rust-seven.vercel.app/tasks", newTask);
       if (data.insertedId) {
         refreshTasks();
         setTaskData({ task: "", status: "todo", tags: [] });

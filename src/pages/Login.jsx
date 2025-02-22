@@ -28,6 +28,16 @@ const Login = () => {
                 console.log(userFromGoogle);
                 setUser(userFromGoogle);
 
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successfully!',
+                    text: 'Welcome to Task Manager!',
+                    confirmButtonText: 'Continue',
+                })
+                navigate('/');
+
+                
+
                 // Prepare user information for the database
                 const userInfo = {
                     name: userFromGoogle.displayName,
@@ -35,7 +45,7 @@ const Login = () => {
                     photo: userFromGoogle.photoURL,
                 };
 
-                axios.post('https://task-management-server-fmbfsfprz.vercel.app/users', userInfo)
+                axios.post('https://task-management-server-rust-seven.vercel.app/users', userInfo)
                     .then(res => {
                         if (res.data.insertedId) {
                             console.log('User added to the database');

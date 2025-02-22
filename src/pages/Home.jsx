@@ -17,7 +17,7 @@ const Home = () => {
 
   const fetchTasks = async () => {
     try {
-      const { data } = await axios.get(`https://task-management-server-fmbfsfprz.vercel.app/tasks?email=${user.email}`);
+      const { data } = await axios.get(`https://task-management-server-rust-seven.vercel.app/tasks?email=${user.email}`);
       setTasks(data);
     } catch (error) {
       console.error("Failed to fetch tasks:", error);
@@ -32,7 +32,7 @@ const Home = () => {
     e.preventDefault();
     if (!taskInput.trim()) return;
     try {
-      const { data } = await axios.post("https://task-management-server-fmbfsfprz.vercel.app/tasks", {
+      const { data } = await axios.post("https://task-management-server-rust-seven.vercel.app/tasks", {
         task: taskInput,
         status,
         email: user.email,
@@ -51,7 +51,7 @@ const Home = () => {
       accept: "TASK",
       drop: async (item) => {
         try {
-          await axios.put(`https://task-management-server-fmbfsfprz.vercel.app/tasks/${item.id}`, { status });
+          await axios.put(`https://task-management-server-rust-seven.vercel.app/tasks/${item.id}`, { status });
           fetchTasks();
         } catch (error) {
           console.error("Failed to update task status:", error);
@@ -84,7 +84,7 @@ const Home = () => {
 
     const deleteTask = async () => {
       try {
-        await axios.delete(`https://task-management-server-fmbfsfprz.vercel.app/tasks/${task._id}`);
+        await axios.delete(`https://task-management-server-rust-seven.vercel.app/tasks/${task._id}`);
         fetchTasks();
       } catch (error) {
         console.error("Failed to delete task:", error);
