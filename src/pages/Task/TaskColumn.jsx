@@ -9,8 +9,8 @@ const TaskColumn = ({ title, icon, tasks, status, refreshTasks }) => {
     accept: "TASK",
     drop: async (item) => {
       try {
-        await axios.put(`http://localhost:5000/tasks/${item.id}`, { status });
-        refreshTasks(); // টাস্ক মুভ করার পর তালিকা রিফ্রেশ করো
+        await axios.put(`https://task-management-server-fmbfsfprz.vercel.app/tasks/${item.id}`, { status });
+        refreshTasks();
       } catch (error) {
         console.error("Failed to update task status:", error);
       }

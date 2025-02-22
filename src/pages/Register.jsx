@@ -33,7 +33,7 @@ const Register = () => {
                 };
 
                 // Add user to the database
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://task-management-server-fmbfsfprz.vercel.app/users', userInfo)
                     .then(res => {
                         if (res.data.insertedId) {
                             console.log('User added to the database');
@@ -95,7 +95,7 @@ const Register = () => {
                             photo: user.photoURL,
                         };
 
-                        axios.post('http://localhost:5000/users', userInfo)
+                        axios.post('https://task-management-server-fmbfsfprz.vercel.app/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
                                     console.log('User added to the database');

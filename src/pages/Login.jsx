@@ -35,7 +35,7 @@ const Login = () => {
                     photo: userFromGoogle.photoURL,
                 };
 
-                axios.post('http://localhost:5000/users', userInfo)
+                axios.post('https://task-management-server-fmbfsfprz.vercel.app/users', userInfo)
                     .then(res => {
                         if (res.data.insertedId) {
                             console.log('User added to the database');

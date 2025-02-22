@@ -15,7 +15,7 @@ const TaskCard = ({ task, refreshTasks }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/tasks/${task._id}`);
+      await axios.delete(`https://task-management-server-fmbfsfprz.vercel.app/tasks/${task._id}`);
       refreshTasks(); // টাস্ক ডিলিট হলে তালিকা রিফ্রেশ করো
     } catch (error) {
       console.error("Failed to delete task:", error);
